@@ -15,3 +15,21 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+.social-btn {
+color: #fff;
+background-color: #286090;
+margin-top: 5px;
+margin-left: 5px;
+padding: 10px 16px;
+font-size: 18px;
+line-height: 1.3333333;
+border-radius: 6px;
+display: inline-block;
+margin-bottom: 0;
+font-weight: 400;
+text-align: center;
+white-space: nowrap;
+vertical-align: middle;
+
+}
