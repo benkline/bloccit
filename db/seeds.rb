@@ -15,6 +15,14 @@ posts = Post.all
   )
 end
 
+#start assignment-30-idempotent_data
+puts "#{Post.count} posts created"
+  Post.find_or_create_by(
+    title: "I am idempotent",
+    body: "Trust me, this is a good thing."
+  )
+#end assignment-30-idempotent_data
+
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
