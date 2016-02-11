@@ -3,7 +3,7 @@ module RandomData
   def self.random_paragraph
     sentences = []
     rand(4..6).times do
-      sentences << random_sentence
+      sentences << self.random_sentence
     end
 
     sentences.join(" ")
@@ -12,11 +12,11 @@ module RandomData
   def self.random_sentence
     strings = []
     rand(3..8).times do
-      strings << random_word
+      strings << self.random_word
     end
 
     sentence = strings.join(" ")
-    sentence.capitalize << "."
+    sentence.capitalize << (".")
   end
 
   def self.random_word
