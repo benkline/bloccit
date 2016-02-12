@@ -21,6 +21,13 @@ puts "#{Post.count} posts created"
     title: "I am idempotent",
     body: "Trust me, this is a good thing."
   )
+
+  puts "#{Comment.count} comments created"
+    Comment.find_or_create_by(
+      post: posts.sample,
+      body: "Trust me, this is ACTUALLY a good thing."
+    )
+
 #end assignment-30-idempotent_data
 
 puts "Seed finished"
