@@ -23,6 +23,8 @@ posts = Post.all
     body: RandomData.random_paragraph
   )
 end
+post = Post.find(params[:id])
+
 
 puts "Seed finished"
 puts "#{Topic.count} topics created"
