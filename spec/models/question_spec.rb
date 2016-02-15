@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Question, type: :model do
-  let(:question) { Question.create!(title: "New Question Title", body: "New Question Body") }
+  let(:question) { Question.create!(title: "New Question Title", body: "New Question Body", resolved: true) }
 
   describe "attributes" do
     it "responds to title" do
@@ -9,6 +9,9 @@ RSpec.describe Question, type: :model do
     end
     it "responds to body" do
       expect(question).to respond_to(:body)
+    end
+    it "responds to resovled" do
+      expect(question).to respond_to(:resolved)
     end
   end
 end
