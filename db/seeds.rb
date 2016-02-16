@@ -34,8 +34,6 @@ end
 end
 sponsored_posts = SponsoredPost.all
 
-post = Post.find(params[:id])
-
 
 puts "Seed finished"
 puts "#{Topic.count} topics created"

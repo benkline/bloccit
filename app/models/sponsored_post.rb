@@ -1,4 +1,5 @@
 class SponsoredPost < ActiveRecord::Base
   belongs_to :topic
-  has_many :comments, dependent: :destroy
+# removed comments - assignment didn't specify adding them,
+# has_many :comments, dependent: :destroy
 end

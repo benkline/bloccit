@@ -24,12 +24,9 @@
       <div class="media">
         <div class="media-body">
           <h4 class="media-heading">
-            <%= link_to sponsored_post.title, topic_post_path(@topic, sponsored_post) %>
+            <%= link_to sponsored_post.title, topic_sponsored_post_path(@topic, sponsored_post) %>
           </h4>
-          <small>
-             submitted <%= time_ago_in_words(sponsored_post.created_at) %> ago <br>
-             <%= sponsored_post.comments.count %> Comments
-           </small>
+<!--I ended up removing commments from sponsored_posts because I couldn't figure out how to add a column to the db without duplicating the names.  -->
         </div>
       </div>
     <% end %>
