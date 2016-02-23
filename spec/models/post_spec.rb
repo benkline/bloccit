@@ -6,8 +6,10 @@ RSpec.describe Post, type: :model do
   let(:user) { User.create!(name: "Bloccit User", email: "killallklowns@gmail.com", password: "helloworld") }
   let(:post) { topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user) }
 
+
   it { is_expected.to belong_to(:topic) }
   it { is_expected.to belong_to(:user) }
+  it { is_expected.to have_many(:comments) }
   it { is_expected.to validate_presence_of(:title) }
   it { is_expected.to validate_presence_of(:body) }
   it { is_expected.to validate_presence_of(:topic) }
