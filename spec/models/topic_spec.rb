@@ -6,6 +6,8 @@ RSpec.describe Topic, type: :model do
 
 # check model relationshps
   it { is_expected.to have_many(:posts) }
+  it { is_expected.to have_many(:labelings) }
+  it { is_expected.to have_many(:labels).through(:labelings) }
 
 # check response to parameters
   describe "attributes" do
