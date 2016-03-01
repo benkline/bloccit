@@ -6,7 +6,6 @@
         Topic: <%= link_to topic.name, topic %>
       </div>
     <% end %>
-<!-- #30 -->
     <% @label.posts.each do |post| %>
       <div>
         Post: <%= link_to post.title, topic_post_path(post.topic, post) %>
