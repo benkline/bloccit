@@ -31,3 +31,5 @@ gem 'turbolinks'
 gem 'bootstrap-sass'
 #to encrypt passwords
 gem 'bcrypt'
+#hide the goods
+gem 'figaro', '1.0'
