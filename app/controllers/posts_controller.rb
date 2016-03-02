@@ -71,4 +71,6 @@ class PostsController < ApplicationController
     end
   end
 
+  def create_vote
+  end
 end

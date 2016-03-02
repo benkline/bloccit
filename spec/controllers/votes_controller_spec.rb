@@ -98,4 +98,5 @@ let(:my_user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", pa
         end
       end
    end
+
 end

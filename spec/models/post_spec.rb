@@ -28,7 +28,7 @@ RSpec.describe Post, type: :model do
     end
   end
 
-   describe "voting" do
+  describe "voting" do
      before do
        3.times { post.votes.create!(value: 1) }
        2.times { post.votes.create!(value: -1) }
@@ -73,4 +73,21 @@ RSpec.describe Post, type: :model do
        end
      end
   end
+
+  describe "create_vote" do
+    it "calls #create_vote when a post is created" do
+      post = topic.posts.new(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+      expect(post).to receive(:create_vote)
+      post.save
+    end
+
+    it "sets post's upvotes by 1" do
+      expect(post.up_votes).to eq(1)
+    end
+
+    it "vote belongs to both post and post.user" do
+      expect(post.votes.first.user).to eq(post.user)
+    end
+  end
+
 end
