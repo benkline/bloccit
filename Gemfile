@@ -33,5 +33,3 @@ gem 'bootstrap-sass'
 gem 'bcrypt'
 #hide the goods
 gem 'figaro', '1.0'
-#help debug heroku
-gem 'sprockets_better_errors'
