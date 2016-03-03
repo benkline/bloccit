@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+ <html>
+   <head>
+     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+   </head>
+   <body>
+     <h1>You created a new post: "<%= @post.title %>"</h1>
+     <small>
+       while logged in as: <%= @post.user.name %>
+     </small>
+     <p>
+       <%= @post.body %>
+     </p>
+     If you are not <%= @post.user.name %>, and have received this email in error - please feel free to freak out.
+    <p>
+      This post was automatically favorited, meaning you will recieve emails at this location everytime someone adds a comment. If you would like to change this setting, please simply unfavorite your post by visiting it<%= link_to "at this link", topic_post_url(@post.topic, @post%>
+     </p>
+   </body>
+ </html>

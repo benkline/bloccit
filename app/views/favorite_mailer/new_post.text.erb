@@ -1,0 +1,6 @@
+You created a new post: "<%= @post.title %>"
+ <%= "=" * (@post.title.length + 12) %>
+
+while logged in as: <%= @post.user.name %> If you are not <%= @post.user.name %>, and have received this email in error - please feel free to freak out.
+
+Also, this post was automatically favorited, meaning you will recieve emails at this location everytime someone adds a comment. If you would like to change this setting, please simply unfavorite your post by visiting it<%= link_to "at this link", topic_post_url(@post.topic, @post%>
