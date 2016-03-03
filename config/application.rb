@@ -15,6 +15,12 @@ Bundler.require(*Rails.groups)
 
 module Bloccit
   class Application < Rails::Application
+
+    # as per https://taimoorchangaizpucitian.wordpress.com/2015/11/08/rails-production-environment-assets-loading/
+    # config.assets.enabled = true
+    #
+    # Bundler.require(:default, :assets, Rails.env)
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

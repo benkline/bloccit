@@ -27,7 +27,8 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = true
+  # I changed this
+  config.assets.compile = false
 
   # Generate digests for assets URLs.
   config.assets.digest = true
@@ -75,4 +76,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
    config.action_mailer.default_url_options = { host: 'quiet-garden-90499.herokuapp.com' }
+
+  # as per sprockets_better_errors
+   config.assets.raise_production_errors = true
+
+
 end

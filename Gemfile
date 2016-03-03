@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 
-group :production do
+group :production, :staging do
   gem 'pg'
   gem 'rails_12factor'
 end
@@ -33,3 +33,5 @@ gem 'bootstrap-sass'
 gem 'bcrypt'
 #hide the goods
 gem 'figaro', '1.0'
+#help debug heroku
+gem 'sprockets_better_errors'
