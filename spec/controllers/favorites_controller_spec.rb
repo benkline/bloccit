@@ -59,5 +59,26 @@ RSpec.describe FavoritesController, type: :controller do
        expect( my_user.favorites.find_by_post_id(my_post.id) ).to be_nil
      end
     end
+
+describe 'SHOW' do
+
+     it "returns http success" do
+       favorite = my_user.favorites.where(post: my_post).create
+       get :show, { post_id: my_post.id, id: favorite.id }
+       expect(response).to have_http_status(:success)
+     end
+
+     it "renders the #show view" do
+       favorite = my_user.favorites.where(post: my_post).create
+       get :show, { post_id: my_post.id, id: favorite.id }
+       expect(response).to render_template :show
+     end
+
+     #it "assigns favorite to @user" do
+      # favorite = my_user.favorites.where(post: my_post)
+      # get :show, { post_id: my_post.id, id: favorite.id }
+      # expect(assigns(:favorite)).to eq(favorite)
+     #end
+   end
   end
 end

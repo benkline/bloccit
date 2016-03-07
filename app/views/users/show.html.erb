@@ -20,15 +20,22 @@
  </div>
 
  <h2>Posts</h2>
- <% if user_has_posts_or_comments(@user.posts) %>
- <%="#{@user.name} has not submitted any posts yet."%>
+ <% if user_has(@user.posts) %>
+  <%="#{@user.name} has not submitted any posts yet."%>
  <% else%>
- <%=render @user.posts%>
+  <%=render @user.posts%>
  <% end %>
 
  <h2>Comments</h2>
-<% if user_has_posts_or_comments(@user.comments) %>
-<%="#{@user.name} has not submitted any comments yet."%>
+<% if user_has(@user.comments) %>
+  <%="#{@user.name} has not submitted any comments yet."%>
 <% else %>
-<%=render @user.comments%>
+  <%=render @user.comments%>
+<% end %>
+
+ <h2>Favorites</h2>
+<% if user_has(@user.favorites) %>
+  <%="#{@user.name} has not favorited any posts yet."%>
+<% else %>
+  <%=render template: "favorites/show" %>
 <% end %>

@@ -1,5 +1,5 @@
 module UsersHelper
-  def user_has_posts_or_comments(p)
-    p != nil
+  def user_has(x)
+    (x.to_a).first == nil
   end
 end
