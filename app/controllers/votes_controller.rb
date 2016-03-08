@@ -12,7 +12,7 @@
 
   def down_vote
     update_vote(-1)
-    
+
     respond_to do |format|
       format.html
       format.js
@@ -25,6 +25,7 @@
     @vote = @post.votes.where(user_id: current_user.id).first
 
     if @vote
+      new_value = [[(@vote.value + new_value), -1].max, 1].min
       @vote.update_attribute(:value, new_value)
     else
       @vote = current_user.votes.create(value: new_value, post: @post)
