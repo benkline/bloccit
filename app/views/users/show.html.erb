@@ -37,5 +37,5 @@
 <% if user_has(@user.favorites) %>
   <%="#{@user.name} has not favorited any posts yet."%>
 <% else %>
-  <%=render template: "favorites/show" %>
+  <%=render @user.posts%>
 <% end %>
