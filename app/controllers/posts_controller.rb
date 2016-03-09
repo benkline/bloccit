@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :authorize_user, except: [:show, :new, :create]
 
   def show
-     @post = Post.find(params[:id])
+    @post = Post.find(params[:id])
   end
 
   def new
