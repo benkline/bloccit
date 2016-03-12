@@ -42,66 +42,71 @@ require 'rails_helper'
    end
 
    context "authenticated users doing CRUD on posts they own" do
-     before do
+     before :each do
        my_user
+       controller.request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(my_user.auth_token)
        my_post
        new_post
-       controller.request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(my_user.auth_token)
      end
 
-   describe "PUT update" do
-      before {put :update, topic_id: my_topic.id, id: my_post.id, post: {title: new_post.title, body: new_post.body }}
+     describe "PUT update" do
+        before :each  do
+          put :update, topic_id: my_topic.id, id: my_post.id, post: { title: new_post.title, body: new_post.body }
+        end
 
-      it "returns http success" do
-        expect(response).to have_http_status(:success)
+        it "returns http success" do
+          expect(response).to have_http_status(:success)
+        end
+
+        it "returns json content type" do
+          expect(response.content_type).to eq 'application/json'
+        end
+
+        it "updates a post with the correct attributes" do
+          updated_post = Post.find(my_post.id)
+          expect(response.body).to eq(updated_post.to_json)
+        end
       end
 
-      it "returns json content type" do
-        expect(response.content_type).to eq 'application/json'
-      end
+#PUT    /api/v1/topics/:topic_id/posts/:id(.:format)    api/v1/posts#update
 
-      it "updates a post with the correct attributes" do
-        updated_post = Post.find(my_post.id)
-        expect(response.body).to eq(updated_post.to_json)
-      end
-    end
+     describe "POST create" do
+         before :each do
+           post :create, topic_id: my_topic.id, post: {user_id: my_user.id, title: my_post.title, body: my_post.body}
+         end
 
-   describe "POST create" do
-       before { post :create, post: {title: "Post Title", body: "Post Body that is more than 20 words long"}}
+         it "returns http success" do
+           expect(response).to have_http_status(:success)
+         end
 
-       it "returns http success" do
-         expect(response).to have_http_status(:success)
+         it "returns json content type" do
+           expect(response.content_type).to eq 'application/json'
+         end
+
+         it "creates a post with the correct attributes" do
+           hashed_json = JSON.parse(response.body)
+           expect(hashed_json["title"]).to eq(my_post.title)
+           expect(hashed_json["body"]).to eq(my_post.body)
+         end
        end
 
-       it "returns json content type" do
-         expect(response.content_type).to eq 'application/json'
-       end
+     describe "DELETE destroy" do
+         before { delete :destroy, topic_id: my_topic.id, id: my_post.id }
 
-       it "creates a post with the correct attributes" do
-         hashed_json = JSON.parse(response.body)
-         expect(hashed_json["title"]).to eq(my_post.title)
-         expect(hashed_json["body"]).to eq(my_post.body)
-       end
-     end
+         it "returns http success" do
+           expect(response).to have_http_status(:success)
+         end
+         it "returns json content type" do
+           expect(response.content_type).to eq 'application/json'
+         end
 
-   describe "DELETE destroy" do
-       before { delete :destroy, topic_id: my_topic.id, id: my_post.id }
+         it "returns the correct json success message" do         
+           expect(response.body).to eq({"message" => "Post destroyed","status" => 200}.to_json)
+         end
 
-       it "returns http success" do
-         expect(response).to have_http_status(:success)
+         it "deletes my_post" do
+           expect{ Post.find(my_post.id) }.to raise_exception(ActiveRecord::RecordNotFound)
+         end
        end
-
-       it "returns json content type" do
-         expect(response.content_type).to eq 'application/json'
-       end
-
-       it "returns the correct json success message" do
-         expect(response.body).to eq({"message" => "Post destroyed","status" => 200}.to_json)
-       end
-
-       it "deletes my_post" do
-         expect{ Post.find(my_post.id) }.to raise_exception(ActiveRecord::RecordNotFound)
-       end
-     end
    end
  end
