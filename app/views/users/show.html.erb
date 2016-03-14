@@ -13,6 +13,7 @@
          <small>
            <%= pluralize(@user.posts.count, 'post') %>,
            <%= pluralize(@user.comments.count, 'comment') %>
+           <%= pluralize(@user.favorites.count, 'favorite') %>
          </small>
        </div>
      </div>
@@ -37,5 +38,6 @@
 <% if user_has(@user.favorites) %>
   <%="#{@user.name} has not favorited any posts yet."%>
 <% else %>
-  <%=render @user.posts%>
+  <%favorite = @posts.where(favorites: true)%>
+  <%=render @user.posts.where(favorites: favorite)%>
 <% end %>
