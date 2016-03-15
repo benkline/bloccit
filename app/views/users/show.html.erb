@@ -12,7 +12,7 @@
          <h2 class="media-heading"><%= @user.name %></h2>
          <small>
            <%= pluralize(@user.posts.count, 'post') %>,
-           <%= pluralize(@user.comments.count, 'comment') %>
+           <%= pluralize(@user.comments.count, 'comment') %>, and
            <%= pluralize(@user.favorites.count, 'favorite') %>
          </small>
        </div>
@@ -38,6 +38,5 @@
 <% if user_has(@user.favorites) %>
   <%="#{@user.name} has not favorited any posts yet."%>
 <% else %>
-  <%favorite = @posts.where(favorites: true)%>
-  <%=render @user.posts.where(favorites: favorite)%>
+  <%= render @user.favorite_posts%>
 <% end %>
