@@ -10,11 +10,11 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *=require bootstrap.min
+  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
-
- */
- @import "bootstrap-sprockets";
- @import "bootstrap";
 
  .user-info {
    margin-top: 9px;
@@ -23,6 +23,3 @@
  .nav {
    margin-top: 5px;
  }
-
- = require_self
- = require_tree
