@@ -55,7 +55,7 @@ end
   Comment.create!(
     user: users.sample,
     post: posts.sample,
-    body: Faker::Hacker.noun
+    body: Faker::Hipster.sentence
   )
 end
 
