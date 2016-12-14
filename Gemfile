@@ -34,3 +34,5 @@ gem 'bootstrap-sass'
 gem 'bcrypt'
 #hide the goods
 gem 'figaro', '1.0'
+#make seed data readable
+gem 'faker'

@@ -3,29 +3,29 @@ require "random_data"
 # Create Users
 5.times do
   User.create!(
-  name:     RandomData.random_name,
-  email:    RandomData.random_email,
-  password: RandomData.random_sentence
+  name:     Faker::Name.name,
+  email:    Faker::Internet.email,
+  password: Faker::Internet.password(8)
   )
 end
 users = User.all
 
 #create topics
-15.times do
+5.times do
   Topic.create!(
-    name: RandomData.random_sentence,
-    description: RandomData.random_paragraph
+    name: Faker::Hacker.say_something_smart,
+    description: Faker::Hipster.paragraph
   )
 end
 topics = Topic.all
 
 #create posts
-50.times do
+10.times do
   post = Post.create!(
     user: users.sample,
     topic: topics.sample,
-    title: RandomData.random_sentence,
-    body: RandomData.random_paragraph
+    title: Faker::Hipster.sentence,
+    body: Faker::Hipster.paragraph
   )
 
 post.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
@@ -37,11 +37,25 @@ end
 posts = Post.all
 
 #create comments
-100.times do
+10.times do
   Comment.create!(
     user: users.sample,
     post: posts.sample,
-    body: RandomData.random_paragraph
+    body: Faker::StarWars.quote
+  )
+end
+10.times do
+  Comment.create!(
+    user: users.sample,
+    post: posts.sample,
+    body: Faker::Company.catch_phrase
+  )
+end
+10.times do
+  Comment.create!(
+    user: users.sample,
+    post: posts.sample,
+    body: Faker::Hacker.noun
   )
 end
 
