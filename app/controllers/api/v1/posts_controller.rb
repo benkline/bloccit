@@ -1,4 +1,4 @@
-require 'rails_helper'
+# require 'rails_helper'
 
  class Api::V1::PostsController < Api::V1::BaseController
 
@@ -33,7 +33,7 @@ require 'rails_helper'
       end
    end
 
-   def destroy   
+   def destroy
      if @post.destroy
        render json: {message: "Post destroyed", status: 200}, status: 200
      else
